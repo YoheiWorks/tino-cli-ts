@@ -1,21 +1,22 @@
 import { Command } from "commander";
-import { handleAddTask } from "./task/action.js";
+import { registerTaskCommand } from "./task/command.js";
 
-const program = new Command();
+function run(): void {
+    const program = buildProgram();
+    program.parse();
+}
 
-program
-  .name("tino")
-  .description("Issue / Task / Note を扱うローカル管理ツール")
-  .version("0.1.0");
+function buildProgram(): Command {
+    const program = new Command();
 
-const task = program
-  .command("task")
-  .description("Task を操作する");
+    program
+        .name("tino")
+        .description("Issue / Task / Note を扱うローカル管理ツール")
+        .version("0.1.0");
 
-task
-  .command("add <title>")
-  .description("Task を追加する")
-  .option("-d, --description <description>", "説明")
-  .action((title, options) => handleAddTask(title, options.description));
+    registerTaskCommand(program);
 
-program.parse();
+    return program;
+}
+
+run();

@@ -14,7 +14,6 @@ const task = program
 task
   .command("add <title>")
   .description("Task を追加する")
-  
   .option("-d, --description <description>", "説明")
   .action((title, options) => {
     console.log(`Adding task: ${title}`);

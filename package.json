@@ -9,8 +9,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
-    "test": "vitest",
-    "test:run": "vitest run",
+    "test": "vitest --reporter=tree",
+    "test:run": "vitest run --reporter=tree",
     "dev": "tsx src/index.ts",
     "dev:watch": "tsx watch src/index.ts"
   },

@@ -1,14 +1,16 @@
 import { Command } from "commander";
-import { handleAddTask } from "./action.js";
+import { createTask } from "./usecases.js";
 
 export function registerTaskCommand(program: Command): void {
-    const task = program
+    const taskCommand = program
         .command("task")
         .description("Task を操作する");
 
-    task
+    taskCommand
         .command("add <title>")
         .description("Task を追加する")
-        .option("-d, --description <description>", "説明")
-        .action((title: string, options: { description?: string }) => handleAddTask(title, options.description));
+        .action(async (title: string) => {
+            const task = await createTask(title)
+            console.log(`Task added: ${task.title}`);
+        })
 }

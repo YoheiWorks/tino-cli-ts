@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { registerTaskCommand } from "./task/command.js";
+import { registerTaskCommand } from "#task/command.js";
 
 function run(): void {
     const program = buildProgram();

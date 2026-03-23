@@ -21,6 +21,9 @@
   "dependencies": {
     "commander": "^14.0.3"
   },
+  "imports": {
+    "#task/*": "./src/task/*"
+  },
   "devDependencies": {
     "@types/node": "^25.5.0",
     "tsx": "^4.21.0",

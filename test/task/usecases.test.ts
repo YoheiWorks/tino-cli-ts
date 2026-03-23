@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { mkdtemp, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { createTask } from '../../src/task/usecases.js'
+import { createTask } from '#task/usecases.js'
 
 describe('createTask', () => {
   let originalCwd: string

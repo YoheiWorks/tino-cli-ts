@@ -5,7 +5,7 @@
   "bin": {
     "tino": "./bin/cli.js"
   },
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
@@ -22,7 +22,7 @@
     "commander": "^14.0.3"
   },
   "imports": {
-    "#task/*": "./src/task/*"
+    "#task/*": "./dist/task/*"
   },
   "devDependencies": {
     "@types/node": "^25.5.0",

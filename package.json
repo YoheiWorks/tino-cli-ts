@@ -22,7 +22,10 @@
     "commander": "^14.0.3"
   },
   "imports": {
-    "#task/*": "./dist/task/*"
+    "#task/*": {
+      "types": "./src/task/*",
+      "default": "./dist/task/*"
+    }
   },
   "devDependencies": {
     "@types/node": "^25.5.0",

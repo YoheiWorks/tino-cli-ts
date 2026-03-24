@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import { mkdtemp, readFile, rm } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { createTask } from '#task/usecases.js'
+import { createTask, listTasks } from '#task/usecases.js'
 
 describe('createTask', () => {
   let originalCwd: string
@@ -53,5 +53,16 @@ describe('createTask', () => {
     await expect(readFile('tasks.json', 'utf-8')).rejects.toMatchObject({
       code: 'ENOENT',
     })
+  })
+
+  it('保存済みTaskを一覧で返す', async () => {
+    const firstTask = await createTask('既存タスク')
+    const secondTask = await createTask('新しいタスク')
+
+    await expect(listTasks()).resolves.toEqual([firstTask, secondTask])
+  })
+
+  it('tasks.jsonがなければ空配列を返す', async () => {
+    await expect(listTasks()).resolves.toEqual([])
   })
 })

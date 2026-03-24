@@ -54,6 +54,22 @@ describe('createTask', () => {
       code: 'ENOENT',
     })
   })
+})
+
+describe('Taskの一覧取得', () => {
+  let originalCwd: string
+  let tempDir: string
+
+  beforeEach(async () => {
+    originalCwd = process.cwd()
+    tempDir = await mkdtemp(join(tmpdir(), 'task-cli-'))
+    process.chdir(tempDir)
+  })
+
+  afterEach(async () => {
+    process.chdir(originalCwd)
+    await rm(tempDir, { recursive: true, force: true })
+  })
 
   it('保存済みTaskを一覧で返す', async () => {
     const firstTask = await createTask('既存タスク')
@@ -65,4 +81,4 @@ describe('createTask', () => {
   it('tasks.jsonがなければ空配列を返す', async () => {
     await expect(listTasks()).resolves.toEqual([])
   })
-})
+});

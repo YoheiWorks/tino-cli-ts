@@ -1,5 +1,6 @@
 import { Command } from "commander";
-import { createTask } from "./usecases.js";
+import { createTask, listTasks } from "./usecases.js";
+import { formatTaskList } from "./formatter.js";
 
 export function registerTaskCommand(program: Command): void {
     const taskCommand = program
@@ -12,5 +13,14 @@ export function registerTaskCommand(program: Command): void {
         .action(async (title: string) => {
             const task = await createTask(title)
             console.log(`Task added: ${task.title}`);
+        })
+
+    taskCommand
+        .command("list")
+        .description("Task を一覧表示する")
+        .action(async () => {
+            const tasks = await listTasks()
+
+            console.log(formatTaskList(tasks));
         })
 }

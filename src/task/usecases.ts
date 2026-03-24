@@ -25,3 +25,7 @@ export async function createTask(title: string): Promise<Task> {
 
     return newTask
 }
+
+export async function listTasks(): Promise<Task[]> {
+    return loadTasks()
+}

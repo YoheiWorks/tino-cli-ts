@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createTask, listTasks } from '#task/usecases.js'
 
-describe('createTask', () => {
+describe('Taskの作成', () => {
   let originalCwd: string
   let tempDir: string
 
